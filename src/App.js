@@ -26,7 +26,12 @@ const App = () => {
   return (
     <div>
       <div className="mb-5">
-        <Header currentPage={currentPage} onPageChange={handlePageChange} />
+        <Header
+          user={user}
+          setUser={setUser}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
         {currentPage === "Home" && <Home user={user} setUser={setUser} />}
 
         {currentPage === "Grid" && <Grid user={user} setUser={setUser} />}
