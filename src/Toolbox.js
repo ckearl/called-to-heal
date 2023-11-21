@@ -4,7 +4,6 @@ const Therapy = () => {
   const messageSubmitHandler = (event) => {
     event.preventDefault();
     if (event.target[0].value === "") return alert("Please enter a message");
-    const message = event.target[0].value;
     alert("Message sent!");
     event.target.reset();
   };
@@ -85,6 +84,24 @@ const Media = () => {
         width="560"
         height="315"
         src="https://www.youtube.com/embed/8NH5XnaWIv8?si=Y2NCawuT7wV-uwje"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        className="w-100"
+      ></iframe>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/ckuIXECbB5E?si=LeG-7fZRqG2GCDpq"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        className="w-100"
+      ></iframe>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/ezGzcuAfyBE?si=sXm42vOWY68rhTJx"
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
