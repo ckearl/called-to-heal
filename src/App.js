@@ -40,7 +40,7 @@ const App = () => {
 
         {currentPage === "Settings" && <Settings user={user} setUser={setUser} />}
       </div>
-      <Navbar onPageChange={handlePageChange} />
+      <Navbar onPageChange={handlePageChange} currentPage={currentPage}/>
     </div>
   );
 };
