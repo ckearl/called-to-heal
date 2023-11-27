@@ -20,7 +20,7 @@ const Therapy = () => {
       <h2 className="text-center">Send a message to your therapist</h2>
       <form onSubmit={messageSubmitHandler}>
         <input type="text" className="form-control" placeholder="I'm feeling..." />
-        <input type="submit" className="btn btn-primary mt-2" value="Send Message" />
+        <input type="submit" className="btn bg-primary text-white mt-2" value="Send Message" />
       </form>
     </div>
   );
@@ -63,7 +63,11 @@ const Notepad = ({ user, setUser }) => {
         <form onSubmit={handleSubmit}>
           <h2>Add New Note</h2>
           <input type="text" className="form-control" />
-          <input className="btn bg-secondary text-dark inactive" type="submit" value="Add Note" />
+          <input
+            className="btn bg-primary text-light inactive mt-1"
+            type="submit"
+            value="Add Note"
+          />
         </form>
         <br />
         <h2>Your Notes:</h2>
