@@ -54,6 +54,7 @@ const Notepad = ({ user, setUser }) => {
         entries: [newEntry, ...user.notepad.entries],
       },
     });
+    event.target.reset();
   };
 
   return (
