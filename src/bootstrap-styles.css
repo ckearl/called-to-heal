@@ -10828,3 +10828,17 @@ body {
   background: url("https://dummyimage.com/1920x1080/dee2e6/f3e9ff.jpg") no-repeat center center fixed;
   background-size: cover;
 }
+
+.navbar-btn {
+  cursor: pointer;
+}
+
+.rounded-background-circle {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
