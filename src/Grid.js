@@ -77,11 +77,17 @@ const Grid = ({ user, setUser }) => {
   return (
     <div className="container">
       <div>Mood Calendar</div>
-      <div className="grid-7">
-        {Object.keys(user.grid.days).map((day) => {
-          return <Box key={day} day={user.grid.days[day]} date={day} />;
-        })}
-      </div>
+      {Object.keys(user.grid.days).length !== 0 ? (
+        <div className="grid-7">
+          {Object.keys(user.grid.days)
+            .slice(-25)
+            .map((day) => {
+              return <Box key={day} day={user.grid.days[day]} date={day} />;
+            })}
+        </div>
+      ) : (
+        <h3 className="text-center"> Record how you are feeling on the home page</h3>
+      )}
     </div>
   );
 };

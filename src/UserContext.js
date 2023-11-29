@@ -215,12 +215,6 @@ export const UserContext = createContext({
             angry: 1,
             sad: 9,
           },
-          "2023-11-29": {
-            anxious: 3,
-            tired: 2,
-            angry: 1,
-            sad: 9,
-          },
         },
       },
       settings: {},
@@ -239,6 +233,9 @@ export const UserContext = createContext({
             entry: "Today I feel great",
           },
         ],
+      },
+      grid: {
+        days: {},
       },
       settings: {},
     },
