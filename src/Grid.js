@@ -25,11 +25,8 @@ const Grid = ({ user, setUser }) => {
   return (
     <div className="container">
       <div>Your Mood Calendar</div>
-      <div className="grid-7">
-        {user.grid.days.map((day, i) => {
-          return <Box day={day} />;
-        })}
-      </div>
+      <div className="grid-7"></div>
+      {user.grid.days["2021-06-02"].sad}
     </div>
   );
 };

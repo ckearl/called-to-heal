@@ -24,7 +24,6 @@ function IconBuilder(icon) {
     icon = "sad-tear";
   }
 
-
   const [sliderValue, setSliderValue] = useState();
 
   const sliderHandler = (event) => {
@@ -61,25 +60,29 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
   return (
     <div>
       <div className="d-flex">
-        <div className="row">
-          <img
-            src={user.sex === "m" ? ElderProfileIcon : SisterProfileIcon}
-            alt=""
-            className="me-2 col-3"
-            onClick={pageChangeHandler}
-          />
-          <h1 className="text-center">
-            Hi, {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}!
-          </h1>
-          <h4>{user.mission} Mission</h4>
-          <h6>Serving Since {user.dateStarted}</h6>
+        <div className="container">
+          <div className="row">
+            <img
+              src={user.sex === "m" ? ElderProfileIcon : SisterProfileIcon}
+              alt=""
+              className="me-2 col-3"
+              onClick={pageChangeHandler}
+            />
+            <h1 className="text-center">
+              Hi, {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}!
+            </h1>
+            <h4>{user.mission} Mission</h4>
+            <h6>Serving Since {user.dateStarted}</h6>
+          </div>
         </div>
       </div>
-      <div className="row">
-        {IconBuilder("flushed")}
-        {IconBuilder("tired")}
-        {IconBuilder("sadness")}
-        {IconBuilder("angry")}
+      <div className="container">
+        <div className="row">
+          {IconBuilder("flushed")}
+          {IconBuilder("tired")}
+          {IconBuilder("sadness")}
+          {IconBuilder("angry")}
+        </div>
       </div>
     </div>
   );
