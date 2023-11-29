@@ -6,7 +6,6 @@ function determineIconColor(currentPage, assignedPage) {
     return "#fdfcfd";
   }
   return "#9aa0b3";
-
 }
 
 function iconBuilder(currentPage, onPageChange, assignedPage, icon) {
@@ -14,7 +13,11 @@ function iconBuilder(currentPage, onPageChange, assignedPage, icon) {
     <div className="navbar-btn">
       <FontAwesomeIcon
         icon={icon}
-        style={{ height: 45, width: 45, color: determineIconColor(currentPage, assignedPage) }}
+        style={{
+          height: 45,
+          width: 45,
+          color: determineIconColor(currentPage, assignedPage),
+        }}
         onClick={() => onPageChange(assignedPage)}
       />
     </div>
@@ -24,14 +27,24 @@ function iconBuilder(currentPage, onPageChange, assignedPage, icon) {
 const Navbar = ({ currentPage, onPageChange }) => {
   return (
     <div
-      style={{ display: "flex", alignItems: "end", justifyContent: "space-around", width: "100%", position: "fixed", bottom: 0, left: 0, paddingBottom: "1%", paddingTop: "2%", backgroundColor: "#4d506a"}}
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        width: "100%",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        paddingBottom: "1%",
+        paddingTop: "2%",
+        backgroundColor: "#4d506a",
+        alignSelf: "flex-end",
+      }}
+      className="called-to-navbar"
     >
-
       {iconBuilder(currentPage, onPageChange, "Home", ["fas", "home"])}
       {iconBuilder(currentPage, onPageChange, "Grid", ["fas", "th-large"])}
       {iconBuilder(currentPage, onPageChange, "Toolbox", ["fas", "toolbox"])}
       {iconBuilder(currentPage, onPageChange, "Settings", ["fas", "cog"])}
-
     </div>
   );
 };
