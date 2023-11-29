@@ -53,7 +53,7 @@ function IconBuilder(icon) {
               style={{ backgroundColor: determineIconColor(icon) }}
             />
             <div className="text-center w-100 position-absolute">
-              {sliderValue ? sliderValue : "0"}
+              {sliderValue ? sliderValue : "10"}
             </div>
           </div>
         </div>
