@@ -4,6 +4,19 @@
 .grid-7 {
   display: grid;
   place-content: center;
-  grid-template-columns: repeat(auto-fill, 14.2857142857%);
+  grid-template-columns: repeat(auto-fill, 20%);
   grid-gap: 0px;
+}
+
+.day {
+  display:grid;
+  grid-template-columns: 50% 50%;
+  grid-row: auto auto;
+
+}
+
+
+.dot {
+  border-radius: 50%;
+  display: inline-block;
 }

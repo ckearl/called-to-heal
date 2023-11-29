@@ -2,26 +2,30 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SisterProfileIcon from "../src/lib/img/sister-profile.png";
 import ElderProfileIcon from "../src/lib/img/elder-profile.png";
-import { icon } from "@fortawesome/fontawesome-svg-core";
-import emotionColors from "./constant";
+// import { icon } from "@fortawesome/fontawesome-svg-core";
+import colors from "./constant";
 
-function rangeSlider(value) {
-  document.getElementById("rangevalue").innerHTML = value;
-}
+// function rangeSlider(value) {
+//   document.getElementById("rangevalue").innerHTML = value;
+// }
 
 function determineIconColor(icon) {
-  const colors = {
-    flushed: emotionColors.flushed,
-    tired: emotionColors.tired,
-    sadness: emotionColors.sadness,
-    angry: emotionColors.angry,
+  const color = {
+    anxious: colors.emotionColors.anxious,
+    tired: colors.emotionColors.tired,
+    sad: colors.emotionColors.sad,
+    angry: colors.emotionColors.angry,
   };
-  return colors[icon];
+  return color[icon];
 }
 
 function IconBuilder(icon) {
-  if (icon === "sadness") {
-    icon = "sad-tear";
+  let iconName = icon;
+  if (icon === "sad") {
+    iconName = "sad-tear";
+  }
+  if (icon === "anxious") {
+    iconName = "flushed";
   }
 
   const [sliderValue, setSliderValue] = useState();
@@ -32,22 +36,27 @@ function IconBuilder(icon) {
   };
 
   return (
-    <div className="col-6">
-      <FontAwesomeIcon
-        icon={["fas", icon]}
-        style={{ height: 45, width: 45, color: determineIconColor(icon) }}
-      />
-      {/* onChange={this.onSelectFile} */}
-      <div className="slider">
-        <input
-          type="range"
-          className={`${icon}-slider`}
-          min="0"
-          max="10"
-          onChange={sliderHandler}
-          style={{ backgroundColor: determineIconColor(icon) }}
+    <div className="col-6 p-1">
+      <div className="d-flex justify-content-center align-items-center">
+        <FontAwesomeIcon
+          icon={["fas", iconName]}
+          style={{ height: 45, width: 45, color: determineIconColor(icon) }}
         />
-        <output id="rangevalue">{sliderValue}</output>
+        <div className="ps-3">
+          <div className="slider position-relative">
+            <input
+              type="range"
+              className={`${icon}-slider`}
+              min="0"
+              max="10"
+              onChange={sliderHandler}
+              style={{ backgroundColor: determineIconColor(icon) }}
+            />
+            <div className="text-center w-100 position-absolute">
+              {sliderValue ? sliderValue : "0"}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -57,6 +66,32 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
   const pageChangeHandler = () => {
     onPageChange("Settings");
   };
+
+  const moodFormHandler = (event) => {
+    event.preventDefault();
+    const anxious = event.target[0].value;
+    const tired = event.target[1].value;
+    const sad = event.target[2].value;
+    const angry = event.target[3].value;
+    const newGridEntry = {
+      anxious: parseInt(anxious),
+      tired: parseInt(tired),
+      sad: parseInt(sad),
+      angry: parseInt(angry),
+    };
+
+    setUser({
+      ...user,
+      grid: {
+        ...user.grid,
+        days: {
+          ...user.grid.days,
+          [new Date().toISOString().slice(0, 10)]: newGridEntry,
+        },
+      },
+    });
+  };
+
   return (
     <div>
       <div className="d-flex">
@@ -77,12 +112,15 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
         </div>
       </div>
       <div className="container">
-        <div className="row">
-          {IconBuilder("flushed")}
-          {IconBuilder("tired")}
-          {IconBuilder("sadness")}
-          {IconBuilder("angry")}
-        </div>
+        <form onSubmit={moodFormHandler}>
+          <div className="row">
+            {IconBuilder("anxious")}
+            {IconBuilder("tired")}
+            {IconBuilder("sad")}
+            {IconBuilder("angry")}
+          </div>
+          <input type="submit" />
+        </form>
       </div>
     </div>
   );
