@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SisterProfileIcon from "../src/lib/img/sister-profile.png";
 import ElderProfileIcon from "../src/lib/img/elder-profile.png";
 import { icon } from "@fortawesome/fontawesome-svg-core";
+import emotionColors from "./constant";
 
 function rangeSlider(value) {
   document.getElementById("rangevalue").innerHTML = value;
@@ -10,10 +11,10 @@ function rangeSlider(value) {
 
 function determineIconColor(icon) {
   const colors = {
-    flushed: "#FFBC42",
-    tired: "#49323E",
-    sadness: "#547AA5",
-    angry: "#CC0E00",
+    flushed: emotionColors.flushed,
+    tired: emotionColors.tired,
+    sadness: emotionColors.sadness,
+    angry: emotionColors.angry,
   };
   return colors[icon];
 }

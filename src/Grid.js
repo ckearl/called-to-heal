@@ -1,4 +1,5 @@
 import React from "react";
+import emotionColors from "./constant";
 
 const Box = ({ day }) => {
   const mood = day.mood;
