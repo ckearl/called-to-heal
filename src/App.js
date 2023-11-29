@@ -26,12 +26,6 @@ const App = () => {
   return (
     <div>
       <div className="mb-5">
-        <Header
-          user={user}
-          setUser={setUser}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
         {currentPage === "Home" && <Home user={user} setUser={setUser} />}
 
         {currentPage === "Grid" && <Grid user={user} setUser={setUser} />}
@@ -40,7 +34,7 @@ const App = () => {
 
         {currentPage === "Settings" && <Settings user={user} setUser={setUser} />}
       </div>
-      <Navbar onPageChange={handlePageChange} />
+      <Navbar onPageChange={handlePageChange} currentPage={currentPage}/>
     </div>
   );
 };

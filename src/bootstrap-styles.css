@@ -10828,3 +10828,85 @@ body {
   background: url("https://dummyimage.com/1920x1080/dee2e6/f3e9ff.jpg") no-repeat center center fixed;
   background-size: cover;
 }
+
+.navbar-btn {
+  cursor: pointer;
+}
+
+.rounded-background-circle {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none !important;
+  width: 100%;
+  height: 15px;
+  border: 1px solid darken(var(--bs-dark), 4%);
+  border-radius: 10px;
+  margin: auto;
+  transition: all 0.3s ease;
+}
+.flushed-slider {
+  background: linear-gradient(to right, #fff, #FFBC42);
+}
+.tired-slider {
+  background: linear-gradient(to right, #fff, #49323E);
+}
+.sad-tear-slider {
+  background: linear-gradient(to right, #fff, #547AA5);
+}
+.angry-slider {
+  background: linear-gradient(to right, #fff, #CC0E00);
+}
+
+&:hover {
+  background-color: lighten(var(--bs-primary), 5%)
+}
+  
+  &:active + #rangevalue /*Here to do something to the value while moving the slider */
+  
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 20px;
+  height: 20px;
+  background-color: var(--bs-dark);
+  border-radius: 30px;
+  box-shadow: 0px 0px 3px darken(var(--bs-dark), 15%);
+  transition: all 0.5s ease;
+}
+  
+  &:hover {
+    background-color: darken(var(--bs-dark), 10%);
+  }
+  
+  &:active {
+    box-shadow: 0px 0px 1px darken(var(--bs-dark), 15%);
+  }
+
+#rangevalue {
+  text-align: center;
+  display: block;
+  margin: auto;
+  padding: 10px 0px ;
+  width: 100%;
+  color: var(--bs-dark);
+}
+  
+.called-to-navbar {
+  /*display: "flex";
+  justify-content: "space-around";
+  width: "100%";
+  position: "fixed";
+  bottom: 0;
+  left: 0;
+  padding-bottom: "1%";
+  padding-top: "2%";
+  background-color: "#4d506a";
+  align-self: "flex-end";*/
+}
