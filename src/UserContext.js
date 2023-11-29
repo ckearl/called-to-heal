@@ -7,6 +7,8 @@ export const UserContext = createContext({
       firstName: "Sawyer",
       lastName: "Halverson",
       sex: "m",
+      mission: "Teipei, Taiwan",
+      dateStarted: "2021-06-01",
       notepad: {
         entries: [
           {
@@ -50,6 +52,8 @@ export const UserContext = createContext({
       firstName: "McKenna",
       lastName: "Staley",
       sex: "f",
+      mission: "New Orleans, Louisiana",
+      dateStarted: "2023-02-01",
       notepad: {
         entries: [
           {
