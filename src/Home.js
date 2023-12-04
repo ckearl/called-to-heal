@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SisterProfileIcon from "../src/lib/img/sister-profile.png";
 import ElderProfileIcon from "../src/lib/img/elder-profile.png";
-import colors from "./constant";
+import constants from "./constant";
 
 const appUsage = [
   {
@@ -41,7 +41,7 @@ function introTopHeader(user, pageChangeHandler) {
               onClick={pageChangeHandler}
             />
           </div>
-          <div className="col-8 text-left">
+          <div className="col-8 text-start">
             <h1>
               Hi, {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}!
             </h1>
@@ -74,17 +74,31 @@ function recentlyVisited(user, appUsage) {
 }
 
 function quoteOfTheDay() {
+  let quoteOfTheDay = pickRandomQuote();
+  console.log(quoteOfTheDay[0].quote);
   return (
     <section class="q-o-t-d mt-3 ms-1 me-1">
       <h3>Quote of the Day</h3>
       <div class="q-o-t-d-content">
-        <p>
-          "The Lord is my light and my salvation; whom shall I fear? the Lord is
-          the strength of my life; of whom shall I be afraid?" - Psalms 27:1
-        </p>
+        <div class="q-o-t-d-quote">{quoteOfTheDay[0].quote}</div>
+        <div class="q-o-t-d-speaker fw-bolder text-end">
+          {quoteOfTheDay[0].speaker}
+        </div>
+        <div class="q-o-t-d-location fw-bolder text-end">
+          {quoteOfTheDay[0].location}
+        </div>
       </div>
     </section>
   );
+}
+
+function pickRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * constants.dailyQuotes.length);
+  // console.log(constants.dailyQuotes[randomIndex]);
+  let quote = constants.dailyQuotes[randomIndex];
+  let speaker = constants.dailyQuotes[1][randomIndex];
+  let location = constants.dailyQuotes[1][randomIndex];
+  return [quote, speaker, location];
 }
 
 function recentlyVisitedCardBuilder(user, appUsage) {
@@ -97,10 +111,10 @@ function recentlyVisitedCardBuilder(user, appUsage) {
 
 function determineIconColor(icon) {
   const color = {
-    anxious: colors.emotionColors.anxious,
-    tired: colors.emotionColors.tired,
-    sad: colors.emotionColors.sad,
-    angry: colors.emotionColors.angry,
+    anxious: constants.emotionColors.anxious,
+    tired: constants.emotionColors.tired,
+    sad: constants.emotionColors.sad,
+    angry: constants.emotionColors.angry,
   };
   return color[icon];
 }
@@ -182,7 +196,7 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
     <div>
       {introTopHeader(user, pageChangeHandler)}
       <div className="container mt-3">
-        <h2 className="text-left">Daily Check-in</h2>
+        <h2 className="text-start">Daily Check-in</h2>
         <form onSubmit={moodFormHandler}>
           <div className="row">
             {IconBuilder("anxious")}
