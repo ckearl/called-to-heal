@@ -9,6 +9,29 @@ export const UserContext = createContext({
       sex: "m",
       mission: "Teipei, Taiwan",
       dateStarted: "2021-06-01",
+      appUsage: [
+        {
+          appName: "Meditation Coach",
+          iconName: "meditation",
+          lastUsed: "2021-06-01",
+          totalTime: "00:00:00",
+          numberOfUses: 0,
+        },
+        {
+          appName: "Notepad",
+          iconName: "sticky-note",
+          lastUsed: "2021-06-01",
+          totalTime: "00:00:00",
+          numberOfUses: 0,
+        },
+        {
+          appName: "Media Player",
+          iconName: "clapperboard",
+          lastUsed: "2021-06-01",
+          totalTime: "00:00:00",
+          numberOfUses: 0,
+        },
+      ],
       notepad: {
         entries: [
           {
@@ -230,6 +253,9 @@ export const UserContext = createContext({
       sex: "f",
       mission: "New Orleans, Louisiana",
       dateStarted: "2023-02-01",
+      appUsage: [
+        {}
+      ],
       notepad: {
         entries: [
           {
