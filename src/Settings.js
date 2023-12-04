@@ -41,17 +41,23 @@ const Settings = ({ user, setUser }) => {
       <h1>
         Hi {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}
       </h1>
-      <h3>{user.settings.homeTown}</h3>
-      <h3>{user.settings.area}</h3>
+      <h5>{user.settings.homeTown}</h5>
+      <hr />
+      <h3>Area: {user.settings.area}</h3>
       <form onSubmit={areaChangeHandler}>
         <select className="form-select" aria-label="Default select example">
+          <option className="">Change Area</option>
           {areaContext.missions[user.mission].areas.map((area) => {
-            return <option value={area}>{area}</option>;
+            return (
+              <option key={area} value={area}>
+                {area}
+              </option>
+            );
           })}
         </select>
         <input type="submit" className="btn btn-primary my-1" />
       </form>
-      <h3>{user.settings.companion}</h3>
+      <h3>Companion: {user.settings.companion}</h3>
       <form onSubmit={companionChangeHandler}>
         <input placeholder="Change Companion" type="text" className="form-control" />
         <input type="submit" className="btn btn-primary my-1" />
