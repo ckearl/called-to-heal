@@ -1,13 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SisterProfileIcon from "../src/lib/img/sister-profile.png";
 import ElderProfileIcon from "../src/lib/img/elder-profile.png";
-// import { icon } from "@fortawesome/fontawesome-svg-core";
 import colors from "./constant";
 
-// function rangeSlider(value) {
-//   document.getElementById("rangevalue").innerHTML = value;
-// }
+const appUsage = [
+  {
+    appName: "Meditation Coach",
+    iconName: "meditation",
+    lastUsed: "2021-06-01",
+    totalTime: "00:00:00",
+    numberOfUses: 0,
+  },
+  {
+    appName: "Notepad",
+    iconName: "sticky-note",
+    lastUsed: "2021-06-01",
+    totalTime: "00:00:00",
+    numberOfUses: 0,
+  },
+  {
+    appName: "Media Player",
+    iconName: "clapperboard",
+    lastUsed: "2021-06-01",
+    totalTime: "00:00:00",
+    numberOfUses: 0,
+  },
+];
+
+function introTopHeader(user, pageChangeHandler) {
+  return (
+    <div className="d-flex">
+      <div className="container">
+        <div className="row align-items-center justify-content-center">
+          <div className="col-4 text-center">
+            <img
+              src={user.sex === "m" ? ElderProfileIcon : SisterProfileIcon}
+              alt=""
+              className=""
+              onClick={pageChangeHandler}
+            />
+          </div>
+          <div className="col-8 text-left">
+            <h1>
+              Hi, {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}!
+            </h1>
+            <h4>{user.mission} Mission</h4>
+            <h6>Serving Since {user.dateStarted}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function recentlyVisited(user, appUsage) {
+  return (
+    <section class="r-v-slider mt-3 ms-1 me-1">
+      <h3>Recently Visited</h3>
+      <div class="slideshow">
+        <div class="sliderImage r-v-slide-1">
+          {recentlyVisitedCardBuilder(user, appUsage)}
+        </div>
+        <div class="sliderImage r-v-slide-2">
+          {recentlyVisitedCardBuilder(user, appUsage)}
+        </div>
+        <div class="sliderImage r-v-slide-3">
+          {recentlyVisitedCardBuilder(user, appUsage)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function quoteOfTheDay() {
+  return (
+    <section class="q-o-t-d mt-3 ms-1 me-1">
+      <h3>Quote of the Day</h3>
+      <div class="q-o-t-d-content">
+        <p>
+          "The Lord is my light and my salvation; whom shall I fear? the Lord is
+          the strength of my life; of whom shall I be afraid?" - Psalms 27:1
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function recentlyVisitedCardBuilder(user, appUsage) {
+  return (
+    <div>
+      <h2>App Name: {appUsage.appName}</h2>
+    </div>
+  );
+}
 
 function determineIconColor(icon) {
   const color = {
@@ -28,11 +114,11 @@ function IconBuilder(icon) {
     iconName = "flushed";
   }
 
-  const [sliderValue, setSliderValue] = useState();
+  const [rangeValue, setRangeValue] = useState();
 
-  const sliderHandler = (event) => {
+  const rangeHandler = (event) => {
     event.preventDefault();
-    setSliderValue(event.target.value);
+    setRangeValue(event.target.value);
   };
 
   return (
@@ -43,17 +129,17 @@ function IconBuilder(icon) {
           style={{ height: 45, width: 45, color: determineIconColor(icon) }}
         />
         <div className="ps-3">
-          <div className="slider position-relative">
+          <div className="range position-relative">
             <input
               type="range"
-              className={`${icon}-slider`}
+              className={`${icon}-range`}
               min="0"
               max="10"
-              onChange={sliderHandler}
+              onChange={rangeHandler}
               style={{ backgroundColor: determineIconColor(icon) }}
             />
             <div className="text-center w-100 position-absolute">
-              {sliderValue ? sliderValue : "10"}
+              {rangeValue ? rangeValue : "10"}
             </div>
           </div>
         </div>
@@ -94,24 +180,9 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
 
   return (
     <div>
-      <div className="d-flex">
-        <div className="container">
-          <div className="row">
-            <img
-              src={user.sex === "m" ? ElderProfileIcon : SisterProfileIcon}
-              alt=""
-              className="me-2 col-3"
-              onClick={pageChangeHandler}
-            />
-            <h1 className="text-center">
-              Hi, {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}!
-            </h1>
-            <h4>{user.mission} Mission</h4>
-            <h6>Serving Since {user.dateStarted}</h6>
-          </div>
-        </div>
-      </div>
-      <div className="container">
+      {introTopHeader(user, pageChangeHandler)}
+      <div className="container mt-3">
+        <h2 className="text-left">Daily Check-in</h2>
         <form onSubmit={moodFormHandler}>
           <div className="row">
             {IconBuilder("anxious")}
@@ -119,9 +190,13 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
             {IconBuilder("sad")}
             {IconBuilder("angry")}
           </div>
-          <input type="submit" />
+          <div className="d-flex justify-content-center p-2">
+            <input className="btn btn-primary" type="submit" />
+          </div>
         </form>
       </div>
+      {recentlyVisited(user, appUsage)}
+      {quoteOfTheDay()}
     </div>
   );
 };
