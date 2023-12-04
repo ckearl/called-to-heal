@@ -8,7 +8,6 @@ import Grid from "./Grid";
 import Toolbox from "./Toolbox";
 import Settings from "./Settings";
 import Navbar from "./Navbar";
-import Header from "./components/Header";
 import { UserContext } from "./UserContext";
 import "./App.css";
 
@@ -27,7 +26,7 @@ const App = () => {
 
   return (
     <div>
-      <div className="mb-5">
+      <div className="">
         {currentPage === "Home" && <Home user={user} setUser={setUser} />}
 
         {currentPage === "Grid" && <Grid user={user} setUser={setUser} />}
@@ -35,6 +34,7 @@ const App = () => {
         {currentPage === "Toolbox" && <Toolbox user={user} setUser={setUser} />}
 
         {currentPage === "Settings" && <Settings user={user} setUser={setUser} />}
+        <div style={{ height: 100 }} />
       </div>
       <Navbar onPageChange={handlePageChange} currentPage={currentPage} />
     </div>

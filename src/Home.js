@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SisterProfileIcon from "../src/lib/img/sister-profile.png";
 import ElderProfileIcon from "../src/lib/img/elder-profile.png";
 import constants from "./constant";
+import seedrandom from "seedrandom";
 
 const appUsage = [
   {
@@ -11,6 +12,7 @@ const appUsage = [
     lastUsed: "2021-06-01",
     totalTime: "00:00:00",
     numberOfUses: 0,
+    bgColor: "#D1313D",
   },
   {
     appName: "Notepad",
@@ -18,6 +20,7 @@ const appUsage = [
     lastUsed: "2021-06-01",
     totalTime: "00:00:00",
     numberOfUses: 0,
+    bgColor: "#E6625D",
   },
   {
     appName: "Media Player",
@@ -25,6 +28,7 @@ const appUsage = [
     lastUsed: "2021-06-01",
     totalTime: "00:00:00",
     numberOfUses: 0,
+    bgColor: "#F9BF76",
   },
 ];
 
@@ -56,57 +60,55 @@ function introTopHeader(user, pageChangeHandler) {
 
 function recentlyVisited(user, appUsage) {
   return (
-    <section class="r-v-slider mt-3 ms-1 me-1">
+    <section className="r-v-slider mt-3 ms-1 me-1">
       <h3>Recently Visited</h3>
-      <div class="slideshow">
-        <div class="sliderImage r-v-slide-1">
-          {recentlyVisitedCardBuilder(user, appUsage)}
-        </div>
-        <div class="sliderImage r-v-slide-2">
-          {recentlyVisitedCardBuilder(user, appUsage)}
-        </div>
-        <div class="sliderImage r-v-slide-3">
-          {recentlyVisitedCardBuilder(user, appUsage)}
-        </div>
+      <div className="slideshow">
+        {appUsage.map((app) => {
+          return (
+            <div key={app.appName} className="sliderImage" style={{ backgroundColor: app.bgColor }}>
+              {recentlyVisitedCardBuilder(user, app)}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
-}
-
-function quoteOfTheDay() {
-  let quoteOfTheDay = pickRandomQuote();
-  console.log(quoteOfTheDay[0].quote);
-  return (
-    <section class="q-o-t-d mt-3 ms-1 me-1">
-      <h3>Quote of the Day</h3>
-      <div class="q-o-t-d-content">
-        <div class="q-o-t-d-quote">{quoteOfTheDay[0].quote}</div>
-        <div class="q-o-t-d-speaker fw-bolder text-end">
-          {quoteOfTheDay[0].speaker}
-        </div>
-        <div class="q-o-t-d-location fw-bolder text-end">
-          {quoteOfTheDay[0].location}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function pickRandomQuote() {
-  const randomIndex = Math.floor(Math.random() * constants.dailyQuotes.length);
-  // console.log(constants.dailyQuotes[randomIndex]);
-  let quote = constants.dailyQuotes[randomIndex];
-  let speaker = constants.dailyQuotes[1][randomIndex];
-  let location = constants.dailyQuotes[1][randomIndex];
-  return [quote, speaker, location];
 }
 
 function recentlyVisitedCardBuilder(user, appUsage) {
   return (
     <div>
       <h2>App Name: {appUsage.appName}</h2>
+      <h2>Icon Name: {appUsage.iconName}</h2>
+      <h2>Last Used: {appUsage.lastUsed}</h2>
+      <h2>Total Time: {appUsage.totalTime}</h2>
+      <h2>Number of Uses: {appUsage.numberOfUses}</h2>
     </div>
   );
+}
+
+function quoteOfTheDay() {
+  let quoteOfTheDay = pickRandomQuote();
+  return (
+    <section className="q-o-t-d mt-3 ms-1 me-1">
+      <h3>Quote of the Day</h3>
+      <div className="q-o-t-d-content">
+        <div className="q-o-t-d-quote">{quoteOfTheDay[0].quote}</div>
+        <div className="q-o-t-d-speaker fw-bolder text-end">{quoteOfTheDay[0].speaker}</div>
+        <div className="q-o-t-d-location fw-bolder text-end">{quoteOfTheDay[0].location}</div>
+      </div>
+    </section>
+  );
+}
+
+function pickRandomQuote() {
+  const rng = seedrandom(new Date().toDateString());
+  const randomIndex = Math.floor(rng() * constants.dailyQuotes.length);
+  // console.log(constants.dailyQuotes[randomIndex]);
+  let quote = constants.dailyQuotes[randomIndex];
+  let speaker = constants.dailyQuotes[1][randomIndex];
+  let location = constants.dailyQuotes[1][randomIndex];
+  return [quote, speaker, location];
 }
 
 function determineIconColor(icon) {
@@ -193,7 +195,7 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
   };
 
   return (
-    <div>
+    <div className="">
       {introTopHeader(user, pageChangeHandler)}
       <div className="container mt-3">
         <h2 className="text-start">Daily Check-in</h2>

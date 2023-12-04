@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { AreaContext } from "./AreaContext";
 
 const Settings = ({ user, setUser }) => {
-  const [area, setArea] = useState("provo");
-
   const userContext = useContext(UserContext);
   const switchUserHandler = () => {
     if (user.id === 0) {
