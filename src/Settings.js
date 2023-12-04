@@ -1,7 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
+import { AreaContext } from "./AreaContext";
 
 const Settings = ({ user, setUser }) => {
+  const [area, setArea] = useState("provo");
+
   const userContext = useContext(UserContext);
   const switchUserHandler = () => {
     if (user.id === 0) {
@@ -10,16 +13,53 @@ const Settings = ({ user, setUser }) => {
       setUser(userContext.users[0]);
     }
   };
+
+  const areaContext = useContext(AreaContext);
+
+  const areaChangeHandler = (event) => {
+    event.preventDefault();
+    setUser({
+      ...user,
+      settings: {
+        ...user.settings,
+        area: event.target[0].value,
+      },
+    });
+  };
+
+  const companionChangeHandler = (event) => {
+    event.preventDefault();
+    setUser({
+      ...user,
+      settings: {
+        ...user.settings,
+        companion: event.target[0].value,
+      },
+    });
+  };
+
   return (
     <div className="p-2">
-      <h1>Settings</h1>
-      <h2>
+      <h1>
         Hi {user.sex === "m" ? "Elder" : "Sister"} {user.lastName}
-      </h2>
-      <button
-        className="btn text-white bg-primary mb-5 me-1 position-absolute bottom-0 end-0"
-        onClick={switchUserHandler}
-      >
+      </h1>
+      <h3>{user.settings.homeTown}</h3>
+      <h3>{user.settings.area}</h3>
+      <form onSubmit={areaChangeHandler}>
+        <select className="form-select" aria-label="Default select example">
+          {areaContext.missions[user.mission].areas.map((area) => {
+            return <option value={area}>{area}</option>;
+          })}
+        </select>
+        <input type="submit" className="btn btn-primary my-1" />
+      </form>
+      <h3>{user.settings.companion}</h3>
+      <form onSubmit={companionChangeHandler}>
+        <input placeholder="Change Companion" type="text" className="form-control" />
+        <input type="submit" className="btn btn-primary my-1" />
+      </form>
+
+      <button className="btn btn-outline-primary mt-2" onClick={switchUserHandler}>
         Switch User
       </button>
     </div>

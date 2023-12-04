@@ -217,7 +217,11 @@ export const UserContext = createContext({
           },
         },
       },
-      settings: {},
+      settings: {
+        area: "Teipei",
+        companion: "Elder Smith",
+        homeTown: "Kansas City, Kasnas",
+      },
     },
     {
       id: 1,
@@ -237,7 +241,11 @@ export const UserContext = createContext({
       grid: {
         days: {},
       },
-      settings: {},
+      settings: {
+        area: "Pride",
+        companion: "Sister Smith",
+        homeTown: "Mesa, Arizona",
+      },
     },
   ],
 });
