@@ -1,5 +1,10 @@
 import React from "react";
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+import LineChart from "../src/components/LineChart";
 import colors from "./constant";
+
+Chart.register(CategoryScale);
 
 const Box = ({ day, date }) => {
   const year = date.slice(0, 4);
@@ -76,6 +81,7 @@ const Grid = ({ user, setUser }) => {
   // next task: display calendar of bad d-flex justify-content-start align-items-baselines and make the line graph
   return (
     <div className="container">
+      <LineChart chartData={user.grid} />
       <div>Mood Calendar</div>
       {Object.keys(user.grid.days).length !== 0 ? (
         <div className="grid-7">
@@ -86,7 +92,10 @@ const Grid = ({ user, setUser }) => {
             })}
         </div>
       ) : (
-        <h3 className="text-center"> Record how you are feeling on the home page</h3>
+        <h3 className="text-center">
+          {" "}
+          Record how you are feeling on the home page
+        </h3>
       )}
     </div>
   );
