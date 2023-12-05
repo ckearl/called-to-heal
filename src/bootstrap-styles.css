@@ -10932,20 +10932,16 @@ input[type="range"]::-webkit-slider-thumb {
 
 @keyframes slider {
 
-  0%,
+  0%, 20.00%,
   100% {
     left: 0%;
   }
 
-  25.00% {
-    left: 0%;
-  }
-
-  50.00% {
+  30.00%, 50.00% {
     left: -100%;
   }
 
-  75.00% {
+  60.00%, 80.00% {
     left: -200%;
   }
 }
