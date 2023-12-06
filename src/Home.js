@@ -34,7 +34,7 @@ const appUsage = [
 
 function introTopHeader(user, pageChangeHandler) {
   return (
-    <div className="d-flex">
+    <div className="d-flex text-light">
       <div className="container">
         <div className="row align-items-center justify-content-center">
           <div className="col-4 text-center">
@@ -61,14 +61,14 @@ function introTopHeader(user, pageChangeHandler) {
 function recentlyVisited(user, appUsage) {
   return (
     <div>
-      <h3 className="w-100 mt-3 ms-1">Recently Visited</h3>
+      <h3 className="w-100 mt-3 ms-1 text-light">Recently Visited</h3>
       <section className="r-v-slider mt-1 ms-1 me-1 border border-primary rounded">
         <div className="slideshow">
           {appUsage.map((app) => {
             return (
               <div
                 key={app.appName}
-                className="sliderImage"
+                className="sliderImage bg-light bg-opacity-75"
                 // style={{ backgroundColor: app.bgColor }}
               >
                 {recentlyVisitedCardBuilder(user, app)}
@@ -103,9 +103,9 @@ function recentlyVisitedCardBuilder(user, appUsage) {
 function quoteOfTheDay() {
   let quoteOfTheDay = pickRandomQuote();
   return (
-    <div className="w-100 mt-3 ms-1">
-      <h3>Quote of the Day</h3>
-      <section className="q-o-t-d ms-1 me-1 border border-primary rounded">
+    <div className="ms-1 mb-5">
+      <h3 className="mt-3 text-light">Quote of the Day</h3>
+      <section className="q-o-t-d me-1 mb-5 border border-primary rounded bg-light bg-opacity-75">
         <div className="q-o-t-d-content">
           <div className="q-o-t-d-quote">{quoteOfTheDay[0].quote}</div>
           <div className="q-o-t-d-speaker fw-bolder text-end">
@@ -213,11 +213,11 @@ const Home = ({ user, setUser, currentPage, onPageChange }) => {
   };
 
   return (
-    <div className="">
+    <div className="bg-primary bg-opacity-75">
       {introTopHeader(user, pageChangeHandler)}
       <div className="mt-3 w-100">
-        <h2 className="text-start ms-1 me-1">Daily Check-in</h2>
-        <section className="ms-1 me-1 p-1 border border-primary">
+        <h2 className="text-start text-light ms-1 me-1">Daily Check-in</h2>
+        <section className="ms-1 me-1 p-1 border border-primary rounded bg-light bg-opacity-75">
           <form onSubmit={moodFormHandler}>
             <div className="row">
               {IconBuilder("anxious")}
