@@ -2,7 +2,7 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 function LineChart({ chartData }) {
   return (
-    <div>
+    <div className="grid-line-graph">
       <h2 style={{ textAlign: "center" }}>Line Chart</h2>
       <Line
         data={chartData}
@@ -16,6 +16,7 @@ function LineChart({ chartData }) {
               display: true,
             },
           },
+          maintainAspectRatio: false,
         }}
       />
     </div>

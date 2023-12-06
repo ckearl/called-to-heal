@@ -61,7 +61,7 @@ const Grid = ({ user, setUser }) => {
   });
 
   return (
-    <div>
+    <div >
       <LineChart chartData={chartData} />
     </div>
   );
