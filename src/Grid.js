@@ -12,18 +12,10 @@ const Grid = ({ user, setUser }) => {
   const allDays = Object.keys(userContext.users[0].grid.days);
   const labelDays = allDays.slice(allDays.length - 10, allDays.length);
   // map through the days and return the value of each value of anxious, sad, angry, and tired
-  const anxious = Object.values(userContext.users[0].grid.days).map(
-    (day) => day.anxious
-  );
-  const sad = Object.values(userContext.users[0].grid.days).map(
-    (day) => day.sad
-  );
-  const angry = Object.values(userContext.users[0].grid.days).map(
-    (day) => day.angry
-  );
-  const tired = Object.values(userContext.users[0].grid.days).map(
-    (day) => day.tired
-  );
+  const anxious = Object.values(userContext.users[0].grid.days).map((day) => day.anxious);
+  const sad = Object.values(userContext.users[0].grid.days).map((day) => day.sad);
+  const angry = Object.values(userContext.users[0].grid.days).map((day) => day.angry);
+  const tired = Object.values(userContext.users[0].grid.days).map((day) => day.tired);
 
   const [chartData, setChartData] = useState({
     // past ten days
@@ -61,7 +53,7 @@ const Grid = ({ user, setUser }) => {
   });
 
   return (
-    <div >
+    <div>
       <LineChart chartData={chartData} />
     </div>
   );
