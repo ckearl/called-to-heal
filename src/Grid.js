@@ -9,8 +9,9 @@ Chart.register(CategoryScale);
 
 const Grid = ({ user, setUser }) => {
   const userContext = useContext(UserContext);
-  const days = Object.keys(userContext.users[0].grid.days);
-  // map through the days and return the value of each value of anxious
+  const allDays = Object.keys(userContext.users[0].grid.days);
+  const labelDays = allDays.slice(allDays.length - 10, allDays.length);
+  // map through the days and return the value of each value of anxious, sad, angry, and tired
   const anxious = Object.values(userContext.users[0].grid.days).map(
     (day) => day.anxious
   );
@@ -24,35 +25,37 @@ const Grid = ({ user, setUser }) => {
     (day) => day.tired
   );
 
-  // .grid.days;
-  console.log(days);
   const [chartData, setChartData] = useState({
-    labels: days,
-    // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+    // past ten days
+    labels: labelDays,
     datasets: [
       {
         label: "Anxious",
         data: anxious,
-        backgroundColor: [constants.emotionColors.anxiousRGB],
-        borderWidth: 1,
+        fill: false,
+        borderColor: [constants.emotionColors.anxiousRGB],
+        borderWidth: 3,
+        tension: 0.1,
       },
       {
         label: "Tired",
         data: tired,
-        backgroundColor: [constants.emotionColors.tiredRGB],
-        borderWidth: 1,
+        borderColor: [constants.emotionColors.tiredRGB],
+        borderWidth: 3,
+        tension: 0.1,
       },
       {
         label: "Sad",
         data: sad,
-        backgroundColor: [constants.emotionColors.sadRGB],
-        borderWidth: 1,
+        borderColor: [constants.emotionColors.sadRGB],
+        borderWidth: 3,
+        tension: 0.1,
       },
       {
         label: "Angry",
         data: angry,
-        backgroundColor: [constants.emotionColors.angryRGB],
-        borderWidth: 1,
+        borderColor: [constants.emotionColors.angryRGB],
+        borderWidth: 3,
       },
     ],
   });

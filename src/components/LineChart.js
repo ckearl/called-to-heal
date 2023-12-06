@@ -2,7 +2,7 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 function LineChart({ chartData }) {
   return (
-    <div className="chart-container">
+    <div>
       <h2 style={{ textAlign: "center" }}>Line Chart</h2>
       <Line
         data={chartData}
@@ -10,10 +10,10 @@ function LineChart({ chartData }) {
           plugins: {
             title: {
               display: true,
-              text: "Users Gained between 2016-2020",
+              text: "Daily Check-in for the past 10 days",
             },
             legend: {
-              display: false,
+              display: true,
             },
           },
         }}
