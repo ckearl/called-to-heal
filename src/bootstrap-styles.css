@@ -10953,3 +10953,7 @@ input[type="range"]::-webkit-slider-thumb {
 .grid-line-graph {
   height: 25rem;
 }
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+}
