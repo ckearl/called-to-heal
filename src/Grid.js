@@ -8,14 +8,20 @@ import { UserContext } from "./UserContext";
 Chart.register(CategoryScale);
 
 const Grid = ({ user, setUser }) => {
-  const userContext = useContext(UserContext);
-  const allDays = Object.keys(userContext.users[0].grid.days);
-  const labelDays = allDays.slice(allDays.length - 10, allDays.length);
+  const labelDays = Object.keys(user.grid.days).slice(-10);
   // map through the days and return the value of each value of anxious, sad, angry, and tired
-  const anxious = Object.values(userContext.users[0].grid.days).map((day) => day.anxious);
-  const sad = Object.values(userContext.users[0].grid.days).map((day) => day.sad);
-  const angry = Object.values(userContext.users[0].grid.days).map((day) => day.angry);
-  const tired = Object.values(userContext.users[0].grid.days).map((day) => day.tired);
+  const anxious = Object.values(user.grid.days)
+    .slice(-10)
+    .map((day) => day.anxious);
+  const sad = Object.values(user.grid.days)
+    .slice(-10)
+    .map((day) => day.sad);
+  const angry = Object.values(user.grid.days)
+    .slice(-10)
+    .map((day) => day.angry);
+  const tired = Object.values(user.grid.days)
+    .slice(-10)
+    .map((day) => day.tired);
 
   const [chartData, setChartData] = useState({
     // past ten days
